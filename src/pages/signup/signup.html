@@ -1,44 +1,61 @@
 <ion-header>
-
   <ion-navbar>
-    <ion-title>{{ 'SIGNUP_TITLE' | translate }}</ion-title>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>
+      Signup
+    </ion-title>
   </ion-navbar>
-
 </ion-header>
-
-
-<ion-content>
-  <form (submit)="doSignup()">
-    <ion-list>
-
-      <ion-item>
-        <ion-label fixed>{{ 'NAME' | translate }}</ion-label>
-        <ion-input type="text" [(ngModel)]="account.name" name="name"></ion-input>
+<ion-content padding id="page8">
+  <form id="signup-form2" [formGroup]="signupform">
+    <ion-list id="signup-list3">
+      <ion-item id="signup-input3">
+        <ion-label>
+          Name
+        </ion-label>
+        <ion-input type="name" [(ngModel)]="name" formControlName="name" name="name" placeholder=""></ion-input>
       </ion-item>
-
-      <ion-item>
-        <ion-label fixed>{{ 'EMAIL' | translate }}</ion-label>
-        <ion-input type="email" [(ngModel)]="account.email" name="email"></ion-input>
+      <ion-item id="signup-input4">
+        <ion-label>
+          Email
+        </ion-label>
+        <ion-input type="email" [(ngModel)]="email" formControlName="email" name="email" placeholder=""></ion-input>
       </ion-item>
-
-      <!--
-      Want to add a Username? Here you go:
-
-      <ion-item>
-        <ion-label floating>Username</ion-label>
-        <ion-input type="text" [(ngModel)]="account.username" name="username"></ion-input>
+      <ion-item no-lines *ngIf="( signupform.get('email').hasError('minlength') || signupform.get('email').hasError('pattern') ||signupform.get('email').hasError('required') ) && signupform.get('email').touched">
+        <div *ngIf="signupform.get('email').hasError('required') && signupform.get('email').touched">
+          <p style="color:red;">Please input your email</p>
+        </div>
+        <div *ngIf="signupform.get('email').hasError('pattern') && signupform.get('email').touched">
+          <p style="color:red;">Email address invalid</p>
+        </div>
       </ion-item>
-      -->
-
-      <ion-item>
-        <ion-label fixed>{{ 'PASSWORD' | translate }}</ion-label>
-        <ion-input type="password" [(ngModel)]="account.password" name="password"></ion-input>
+      <ion-item id="signup-input5">
+        <ion-label>
+          Password
+        </ion-label>
+        <ion-input type="text" [(ngModel)]="password" formControlName="password" name="password" placeholder=""></ion-input>
       </ion-item>
+      <ion-item no-lines *ngIf="( signupform.get('password').hasError('minlength') || signupform.get('password').hasError('required') ) && signupform.get('password').touched">
+       <div *ngIf="signupform.get('password').hasError('required') && signupform.get('password').touched">
+         <p style="color:red;">Please input your password</p>
+       </div>
+       <div *ngIf="signupform.get('password').hasError('minlength') && signupform.get('password').touched">
+         <p style="color:red;">Minimum 6 characters</p>
+       </div>
+     </ion-item>
+     <!-- <ion-item id="signup-input7">
+       <ion-label>
+         Contact Number (HP)
+       </ion-label>
+       <ion-input type="tel" [(ngModel)]="phone" formControlName="phone" name="phone" placeholder=""></ion-input>
+     </ion-item> -->
 
-      <div padding>
-        <button ion-button color="primary" block>{{ 'SIGNUP_BUTTON' | translate }}</button>
-      </div>
 
     </ion-list>
+    <button id="signup-button3" [disabled]="signupform.invalid" (click)="register(user)" ion-button color="positive" block>
+      Submit
+    </button>
   </form>
 </ion-content>

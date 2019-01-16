@@ -1,0 +1,83 @@
+<ion-header >
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>
+      Summary
+    </ion-title>
+
+<!-- style="border-radius: 25px;border: 2px solid #84A7E6;padding: 20px;width: 350px;height: 250px;background-color: white;" -->
+  </ion-navbar>
+</ion-header>
+<ion-content style="background-color:#D3D3D3" padding id="page5" center>
+  <div [ngStyle]="{ 'background-color' : homeColor, 'border-radius' : borderRadius, 'border': border, 'padding': padding, 'width': width, 'height': height}" class="divContainer0">
+    <ion-row style="text-align:center; margin-bottom:-15px;">
+    <ion-col col-6 col-sm ><h5>{{balance}}</h5></ion-col>
+    <ion-col col-6 col-sm ><h5>{{cashflow}}</h5></ion-col>
+    </ion-row >
+    <div #balgauge [style.width.%]="45" [style.height.px]="200" style="float:left"></div>
+    <div #cfgauge [style.width.%]="45" [style.height.px]="200" style="float:right"></div>
+  </div>
+  <div class="spacer" style="width:300px;height:10px;" id="summary-spacer2"></div>
+  <div *ngIf="conditionDiv" class="divContainer1">
+    <h5 id="summary-heading5" style="color:#000000;">
+      Balance
+    </h5>
+    <h1 id="summary-heading7" style="color:green;text-align:center;">
+      {{userIncome | currency:"SGD" }}
+    </h1>
+  </div>
+  <div class="spacer" style="width:300px;height:10px;" id="summary-spacer2"></div>
+  <div *ngIf="conditionDiv" class="divContainer1">
+    <h5 id="summary-heading11" style="color:#000000;">
+      CashFlow
+    </h5>
+    <h1 id="summary-heading6" style="color:#EC0E0E;text-align:center;">
+      {{cashFlow | currency:"SGD" }}
+    </h1>
+    <ion-row >
+    <ion-col col-8 col-sm><h5>Income</h5></ion-col>
+    <ion-col style="color:green" col-4 col-sm>{{totalIncome | currency:"SGD"}}</ion-col>
+    <div class="divContainer2" style="background-color:green" col-11 col-sm></div>
+    </ion-row>
+    <div class="spacer" style="width:300px;height:10px;" id="summary-spacer3"></div>
+    <ion-row >
+    <ion-col col-8 col-sm><h5>Expense</h5></ion-col>
+    <ion-col style="color:red" col-4 col-sm>{{totalExpenses | currency:"SGD"}}</ion-col>
+    <div class="divContainer2" style="background-color:red" col-11 col-sm></div>
+    </ion-row>
+  </div>
+
+  <div class="spacer" style="width:300px;height:10px;" id="summary-spacer3"></div>
+
+  <div [ngStyle]="{ 'background-color' : homeColor, 'border-radius' : borderRadius, 'border': border, 'padding': padding, 'width': width, 'height': height}">
+    <h5 id="summary-heading15" style="color:#000000;">
+      {{ExpensesStructure}}
+    </h5>
+
+      <canvas #doughnutCanvas>
+    </canvas>
+
+  </div>
+  <div class="spacer" style="width:300px;height:10px;" id="summary-spacer4"></div>
+  <div *ngIf="conditionDiv" class="divContainer1">
+    <h5 id="summary-heading16" style="color:#000000;">
+      Latest records overview
+    </h5>
+    <ion-list>
+      <ion-item *ngFor="let eachData of userEntryData | slice:0:5;">
+
+        <ion-avatar item-start>
+          <img src="{{eachData.img}}">
+        </ion-avatar>
+        <h2>{{eachData.category}}</h2>
+        <p ion-text [color]="condition(eachData) ? 'danger' : 'secondary'" item-end>{{eachData.amount | currency:"SGD"}}</p>
+        <p>{{eachData.date}}</p>
+      </ion-item>
+      <p (click)="goToTransactionHisotryPage()" ion-text color="primary"> SHOW MORE </p>
+
+    </ion-list>
+  </div>
+
+</ion-content>

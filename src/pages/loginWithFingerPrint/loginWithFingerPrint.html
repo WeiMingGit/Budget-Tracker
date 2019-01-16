@@ -1,0 +1,45 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>
+      loginWithFingerPrint
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content style="background-color:#D3D3D3" padding id="page7">
+  <form id="login-form1" [formGroup]="loginForm">
+    <ion-list id="login-list2">
+      <ion-item style="background-color:#D3D3D3">
+        <img src="assets/img/fingerprint.jpeg" style="display:block;width:70%;height:auto;margin-left:auto;margin-right:auto;" />
+        <h2 id="mainPage-heading1" style="color:#000000;text-align:center;">
+          <b>Fingerprint Authentication Login</b>
+        </h2>
+      </ion-item>
+
+      <ion-label>
+        <b>Email</b>
+      </ion-label>
+      <ion-item id="login-input1">
+
+        <ion-input type="email" [(ngModel)]="user.email" name="email" formControlName="email" placeholder="" ></ion-input>
+      </ion-item>
+      <ion-item no-lines *ngIf="( loginForm.get('email').hasError('minlength') || loginForm.get('email').hasError('pattern') ||loginForm.get('email').hasError('required') ) && loginForm.get('email').touched">
+        <div *ngIf="loginForm.get('email').hasError('required') && loginForm.get('email').touched">
+          <p style="color:red;">Please input your email</p>
+        </div>
+        <div *ngIf="loginForm.get('email').hasError('pattern') && loginForm.get('email').touched">
+          <p style="color:red;">Email address invalid</p>
+        </div>
+      </ion-item>
+
+
+    </ion-list>
+
+
+    <button ion-button color="positive" style="width:100%" (click)="loginWithFingerprint()">
+      Login
+    </button>
+  </form>
+</ion-content>

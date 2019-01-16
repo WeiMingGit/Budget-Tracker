@@ -1,0 +1,45 @@
+<ion-menu [content]="mainContent">
+  <ion-header>
+    <ion-toolbar>
+      <img src="assets/img/profile.jpeg" style="width:130px;height:130px; display: block;margin-left: auto;margin-right: auto;">
+      <h3 style="text-align:center">{{userName}}</h3>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content id="side-menu21">
+    <ion-list id="menu-list1">
+      <ion-item color="none" menuClose="" on-click="goToSummary()" id="menu-list-item4">
+        Summary
+      </ion-item>
+      <ion-item color="none" menuClose="" id="menu-list-item5">
+        Budget
+      </ion-item>
+      <ion-item color="none" id="menu-list-item6">
+        Goal
+      </ion-item>
+      <ion-item color="none" id="menu-list-item13"  menuClose="" (click)="goToStatistic()">
+        Statistic
+      </ion-item>
+      <ion-item color="none" menuClose="" (click)="goToTransactionHisotryPage()" id="menu-list-item14">
+        Records
+      </ion-item>
+      <ion-item color="none" id="menu-list-item15">
+        Receipt Status
+      </ion-item>
+      <ion-item color="none" id="menu-list-item16">
+        Advertisement
+      </ion-item>
+      <ion-item color="none" id="menu-list-item10">
+        Referral
+      </ion-item>
+      <ion-item color="none" menuClose="" (click)="goToBackSyncPage()" id="menu-list-item11">
+        Bank Sync
+      </ion-item>
+      <ion-item color="none"  menuClose="" (click)="goToLogout()" id="menu-list-item12">
+        Log Out
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-menu>
+
+
+<ion-nav #mainContent [root]="rootPage"></ion-nav>

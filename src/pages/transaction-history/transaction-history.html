@@ -1,0 +1,59 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>
+      Records
+    </ion-title>
+
+  </ion-navbar>
+</ion-header>
+
+<ion-content  style="background-color:#D3D3D3" padding id="page3">
+  <ion-searchbar (ionInput)="setFilteredItems($event)"></ion-searchbar>
+  <ion-segment [(ngModel)]="date" color="primary" >
+    <ion-segment-button value="7 Days" (ionSelect)="retrieveAllRecords($event)">
+      7 Days
+    </ion-segment-button>
+    <ion-segment-button value="1 Month" (ionSelect)="retrieveAllRecords($event)">
+      1 Month
+    </ion-segment-button>
+    <ion-segment-button value="6 Months" (ionSelect)="retrieveAllRecords($event)">
+      6 Months
+    </ion-segment-button>
+    <ion-segment-button value="1 Year" (ionSelect)="retrieveAllRecords($event)">
+      1 Year
+    </ion-segment-button>
+  </ion-segment>
+
+
+  <div>
+    <p style="float:left" col-9.5 col-sm>Last {{date}}</p>
+    <p ion-text [color]="conditionTotal(total) ? 'danger' : 'secondary'" style="float:right" col-2.5 col-sm>{{total | currency:"SGD"}}</p>
+
+  </div>
+
+  <ion-list>
+   <ion-item-sliding #item *ngFor="let eachData of userOverallData">
+
+     <ion-item-options side="right">
+       <button ion-button color="danger" (click)="delete(eachData)">
+           <ion-icon name="trash"></ion-icon>
+           Delete
+         </button>
+    </ion-item-options>
+      <ion-item>
+        <ion-avatar item-start>
+          <img src="{{eachData.img}}">
+        </ion-avatar>
+        <p ion-text [color]="condition(eachData) ? 'danger' : 'secondary'" item-end>{{eachData.amount  | currency:"SGD"}}</p>
+
+        <h2>{{eachData.category}}</h2>
+        <p>{{eachData.date}}</p>
+      </ion-item>
+  </ion-item-sliding>
+</ion-list>
+
+
+</ion-content>

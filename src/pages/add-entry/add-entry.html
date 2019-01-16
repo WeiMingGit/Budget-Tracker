@@ -1,0 +1,53 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>
+      Add Entry
+    </ion-title>
+    <ion-buttons end>
+    <button ion-button (click)="addEntry()"><ion-icon name="checkmark" style="font-size:30px"></ion-icon></button>
+    </ion-buttons>
+
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding id="page4">
+
+  <ion-item style="background-color:#0e4c92ff; ">
+
+    <ion-item>
+      <!-- <ion-segment [(ngModel)]="icons" color="secondary">
+      <ion-segment-button value="camera">
+        <ion-icon name="camera"></ion-icon>
+      </ion-segment-button>
+      <ion-segment-button value="bookmark">
+        <ion-icon name="bookmark"></ion-icon>
+      </ion-segment-button>
+    </ion-segment> -->
+    <ion-segment [(ngModel)]="type" color="secondary">
+      <ion-segment-button value="income">
+        <p>Income</p>
+      </ion-segment-button>
+      <ion-segment-button value="expense">
+          <p>Expense</p>
+      </ion-segment-button>
+    </ion-segment>
+      </ion-item>
+      <ion-item no-lines>
+        <ion-select [(ngModel)]="category" id="categorySelect">
+          <ion-option>Transport</ion-option>
+          <ion-option>Food</ion-option>
+          <ion-option>Shopping</ion-option>
+          <ion-option>Utility</ion-option>
+        </ion-select>
+      </ion-item>
+
+    <ion-item no-lines>
+
+      <ion-input id="inputEntry" [(ngModel)]="amount" placeholder="0 SGD" type="tel"></ion-input>
+    </ion-item>
+
+  </ion-item>
+</ion-content>

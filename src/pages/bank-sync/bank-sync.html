@@ -1,0 +1,32 @@
+<ion-header >
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>
+      Bank Sync
+    </ion-title>
+
+    <ion-buttons end>
+      <button ion-button icon-only (click)="goToSync()">
+        <ion-icon ios="ios-add-circle" md="md-add-circle" style="float:right"></ion-icon>
+      </button>
+    </ion-buttons>
+
+
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+  <ion-list>
+    <ion-item *ngFor="let data of bankData">
+      <ion-thumbnail style="font-size:10px" item-start>
+        <img src="{{data.bank}}">
+      </ion-thumbnail>
+      <p style="font-size:12px">{{data.accountName}}</p>
+      <ion-note style="font-size:10px">{{data.accountNumber}}</ion-note>
+      <p item-end>{{data.availableBalance | currency:"SGD"}}</p>
+    </ion-item>
+  </ion-list>
+</ion-content>
